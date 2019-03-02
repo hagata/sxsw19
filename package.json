@@ -1,0 +1,12 @@
+{
+  "name": "podversation",
+  "version": "0.0.1",
+  "description": "prototype for the podversation app to test voice commands",
+  "main": "index.js",
+  "scripts": {
+    "start": "echo \"Docker Composed\" && exit 1",
+    "vue": "vue serve"
+  },
+  "author": "Genki Hagata",
+  "license": "ISC"
+}
