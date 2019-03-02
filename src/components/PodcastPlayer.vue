@@ -1,6 +1,6 @@
 <!-- Current podcast component -->
 <template>
-  <div class="podcast">
+  <div class="podcast-player">
     <h1>{{ msg }}</h1>
     <!-- Podcast cover art -->
     <!-- Podcast Title & Episode name -->
@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: 'Podcast',
+  name: 'PodcastPlayer',
   props: {
     msg: String
   }
