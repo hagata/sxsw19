@@ -36,3 +36,36 @@ With Docker Desktop installed (or [Docker Toolbox](https://docs.docker.com/toolb
 ```
 docker-compose up
 ```
+
+### Launching the Docker containers interactive shell.
+If you need to access the running container to run other `npm` scripts or similar, first you will need the container ID, then you can connect to it with `docker exec`, ex:
+Get the image NAME with
+```shell
+docker ps
+
+# CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                    NAMES
+f7411a6d2e0e        podversation_vue    "npm run serve"     2 hours ago         Up 7 minutes        0.0.0.0:8080->8080
+```
+then attach with:
+```shell
+docker exec -it [container name] /bin/ash
+```
+You can exit the conainer with `ctrl+p, q` (in succession, `p` then `q` while holding `ctrl`)
+
+# Chapter 1 - Podcast player
+The key feature of this application is to be able to listen to voice commands while listening to a podcast, in order to get there, we'll first hook up a basic audio file player.
+
+## Podcast data
+We're mocking data that we would get back from a backend service or some other component.
+See, the new file, `src/data/podcast-data.js`.
+
+We'll be referencing a podcast episode from this dataset. The first option, `podcasts[0]` is a streamed audio file from Libsyn, the second, `podcasts[1]` is a local mp3 file in `public/assets/`
+
+## Todo's
+This part of the prototype is simply getting the basics of a UI built for presentation and setting us up for the next step with a couple custom UI elements with event methods attached to them.
+
+- Build UI with Podcast image, title, episode name, and description (in `components/PodcastPlayer.vue`)
+- Create a new `Controls` component in `components/Controls.vue`
+    - Create a custom Controls UI with a seekbar, timestamps, and play button.
+- Add basic event handling to the new Controls component for, `play()`
+

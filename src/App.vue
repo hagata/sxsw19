@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <podcast-player msg="Hello, Vue! 🎩"/>
+    <podcast-player/>
     <!-- Bookmarks -->
     <!-- Notes -->
   </div>
