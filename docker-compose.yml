@@ -7,3 +7,4 @@ services:
     command: npm run serve
     volumes:
       - .:/app
+      - /app/node_modules/
