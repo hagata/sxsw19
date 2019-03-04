@@ -130,7 +130,6 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        outline: 1px dashed tomato;
         width: 80%;
 
         &__time {
