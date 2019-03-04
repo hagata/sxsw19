@@ -16,13 +16,13 @@
     </span>
     <!-- Controls Component -->
     <controls
+      ref="podcast"
       :audio="currentPodcast.audioSource"
     />
 
     <p class="podcast-player__description">
       {{currentPodcast.description}}
     </p>
-    <!-- Podcast Description -->
   </div>
 </template>
 

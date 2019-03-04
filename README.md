@@ -97,3 +97,29 @@ Artyom Settings
     // name: 'Jarvis'
 }
 ```
+
+# Chapter 3 - Bookmark Component
+Now that we have the voice commands working, we need to hook up the first of the core features, Bookmarking.
+
+The controls are already done as far as voice goes, and this is where we can experiment with "what feels right" as far as what the commands are and whether or not we use a command `name` e.g., `Jarvis`.
+
+Todo’s
+When you say "bookmark" (or other commands) a clickable bookmark should be added to a bookmark list, and on the seekbar that moves the podcast to that point.
+
+- Create a bookmark component
+- Add storage of bookmarks, `data()` object is OK. (Bonus, LocalStorage)
+- Create new bookmarks with a voice command
+- Show all bookmarks on App.vue as well as on the `seeker` in Controls.vue
+	- SVG icons in `src/icons` *from [Material Icons](https://material.io/tools/icons/?style=baseline)*. *Tip: quickly test events from child and grandchild components with `$emit` and `this.$root.$on`. (Bonus, implement a porper store, like Vuex)
+    - Refactor `Controls.vue` methods to have a `getCurrentPercentage` and `getCurrentTime` method for use by other components.
+- Bonus: Add a voice command to 'go to next bookmark' *Hint, find the "next" bookmark based on current time and you can reusue the `bookmarkJumpHandler` method.
+
+### Snippets
+Sample Bookmark data
+```js
+{
+    id: 0,
+    timestring: '06:22',
+    seconds: 382.662643,
+}
+```

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <podcast-player/>
+    <podcast-player ref="player"/>
     <!-- Bookmarks -->
     <!-- Notes -->
   </div>
@@ -8,12 +8,50 @@
 
 <script>
 import PodcastPlayer from './components/PodcastPlayer.vue'
+import VoiceInterface from './Utils/VoiceInterface.js'
 
 export default {
   name: 'podversation',
   components: {
     PodcastPlayer
   },
+  mounted() {
+    this.voice = new VoiceInterface() // artyom
+    this.initCommands();
+  },
+  methods: {
+    /**
+     * Registers all the voice commands we want to listen for
+     */
+    initCommands() {
+      this.voice.listener.on(['play', 'start', 'stop', 'pause']).then(() => {
+        this.playHandler();
+      })
+      this.voice.listener.on(['add a bookmark', 'save this spot', 'bookmark']).then(() => {
+        this.newBookmarkHandler();
+      })
+      this.voice.listener.on(['voice note', 'new memo', 'note', 'memo']).then(() => {
+        this.newNoteHandler();
+      })
+    },
+    /**
+     * Plays the podcast on the 'play' command
+     */
+    playHandler() {
+      // Toggle's play/pause
+      // BONUS: Refactor the toggle method to separate playing and pausing.
+      this.$refs.player.$refs.podcast.playHandler();
+    },
+    /**
+     * Adds a bookmark
+     */
+    newBookmarkHandler(){
+      console.log('New Bookmark')
+    },
+    newNoteHandler(){
+      console.log('New note')
+    }
+  }
 }
 </script>
 
