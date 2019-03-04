@@ -8,16 +8,16 @@
         :src="audio"></audio>
 
         <div class="controls__time">
-            <div class="controls__timestamps">
-                <span ref="currentTimeIndicator" class="controls__timestamp">{{currentTime}}</span>
-                <span ref="totalTimeIndicator" class="controls__timestamp">{{duration}}</span>
+            <span class="controls__timestamp">{{currentTime}}</span>
+            <div class="controls__timebar">
+                <div
+                v-on:click="seekHandler($event)"
+                ref="seekbar"
+                class="controls__seekbar">
+                    <span ref="seekbarFill" class="controls__seekbar-fill"></span>
+                </div>
             </div>
-            <div
-            v-on:click="seekHandler($event)"
-            ref="seekbar"
-            class="controls__seekbar">
-                <span ref="seekbarFill" class="controls__seekbar-fill"></span>
-            </div>
+            <span class="controls__timestamp">{{duration}}</span>
         </div>
 
         <button
@@ -134,17 +134,32 @@
         width: 80%;
 
         &__time {
-            align-items: center;
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
+            width: 100%;
         }
+
+        &__timestamp {
+            flex:0 0 44px;
+
+            &:first-of-type {
+                margin-right:1rem;
+            }
+            &:last-of-type {
+                margin-left: 1rem;
+            }
+        }
+
+        &__timebar {
+            flex: 1 1 100%;
+        }
+
         &__seekbar {
             background: #aaaaaa;
             border-radius: 5px;
             height: 16px;
             overflow: hidden;
             position: relative;
-            width: 60vw;
         }
 
         &__seekbar-fill {
@@ -157,11 +172,7 @@
             width: 100%;
         }
 
-        &__timestamps {
-            display: flex;
-            justify-content: space-between;
-            width:100%;
-        }
+
 
         &__toggle-button {
             background: var(--dark-blue);

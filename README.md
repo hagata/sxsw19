@@ -69,3 +69,31 @@ This part of the prototype is simply getting the basics of a UI built for presen
     - Create a custom Controls UI with a seekbar, timestamps, and play button.
 - Add basic event handling to the new Controls component for, `play()`
 
+
+# Chapter 2 - Speech to text API
+The key component to our prototype is getting voice input and listening to that input for commands. There are a handful of services that are all good, for this one, we'll be using [Artyom](https://github.com/sdkcarlos/artyom.js). It is Open Source, can listen to a stream for commands, and doesn't require an API call. Build on the [WebkitSpeechRecognition API](https://developers.google.com/web/updates/2013/01/Voice-Driven-Web-Apps-Introduction-to-the-Web-Speech-API), **Only available in Chrome**
+
+
+## Todo's
+- New Artyom based VoiceInterface class
+    - Add an instance to `App.vue`
+    - Add a play command to play the podcast (*hint, access grandchild component through `$refs`)
+
+- Listen for "bookmark" and "new note" commands
+    - `console.log()` for now
+
+### Snippets
+Artyom Settings
+```js
+{
+    lang: 'en-US', // Language to listen for
+    continuous: true, // Listen forever
+    soundex: true, // Use the soundex algorithm to increase accuracy
+    debug: true, // Show messages in the console
+    listen: true, // Start to listen commands !
+
+    // If providen, you can only trigger a command if you say its name
+    // e.g to trigger Good Morning, you need to say 'Jarvis Good Morning'
+    // name: 'Jarvis'
+}
+```

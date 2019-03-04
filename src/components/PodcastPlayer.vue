@@ -14,14 +14,10 @@
     <h1 class="podcast-player__episode">
       {{currentPodcast.episodeTitle}}
     </h1>
-    <!-- Controls Component
-      make a new component in components/Controls.vue
-      it will take in the currentEpisode.audioSource as a prop
-
-    -->
+    <!-- Controls Component -->
     <controls
       :audio="currentPodcast.audioSource"
-     />
+    />
 
     <p class="podcast-player__description">
       {{currentPodcast.description}}
