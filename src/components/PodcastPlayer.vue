@@ -16,12 +16,12 @@
 </template>
 
 <script>
-import podcasts from '../data/podcast-data.js';
+// import podcast data from data/
 export default {
   name: 'PodcastPlayer',
   data() {
     return {
-      currentPodcast: podcasts[0]
+      // Return a podcast as currentPodcast
     };
   }
 };
