@@ -10,11 +10,23 @@
         <div class="controls__time">
             <span class="controls__timestamp">{{currentTime}}</span>
             <div class="controls__timebar">
-                <div
-                v-on:click="seekHandler($event)"
-                ref="seekbar"
-                class="controls__seekbar">
-                    <span ref="seekbarFill" class="controls__seekbar-fill"></span>
+                <!-- for every Bookmark, add a bookmark -->
+                <div class="controls__timebar">
+                    <div class="controls__markers" v-if="duration">
+                        <div
+                        :style="{left: `${(getCurrentPercentage(mark.seconds) * 100)}%`}"
+                        @click="markerClickHandler(mark)"
+                        v-for="mark in bookmarks" :key="mark.id" class="controls__mark">
+                            <svg
+                            width="15" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M13.66 15.13c.51-.36.84-.96.84-1.63l-.01-11c0-1.1-.89-2-1.99-2h-10C1.4.5.51 1.4.51 2.5l-.01 11c0 .67.33 1.27.84 1.63L7.5 19.5l6.16-4.37z" fill="#000" fill-rule="evenodd"/></svg>
+                        </div>
+                    </div>
+                    <div
+                    v-on:click="seekHandler($event)"
+                    ref="seekbar"
+                    class="controls__seekbar">
+                        <span ref="seekbarFill" class="controls__seekbar-fill"></span>
+                    </div>
                 </div>
             </div>
             <span class="controls__timestamp">{{duration}}</span>
@@ -39,12 +51,13 @@
         data() {
             return {
                 currentTime: '0:00',
-                duration: '',
+                duration: null,
                 playing: false,
             }
         },
         props: [
-            'audio'
+            'audio',
+            'bookmarks'
         ],
         methods: {
             /**
@@ -71,6 +84,15 @@
                 // When the audio player time changes, update the seekbar fill
                 this.seekbarFillHandler();
             },
+            getCurrentTime() {
+                const seconds = this.$refs.podcastAudio.currentTime
+                const hhmmss = this.secondsToHHMMSS(seconds);
+
+                return {
+                    seconds,
+                    hhmmss
+                }
+            },
             /**
              * Meta data handler
              * Get's audio files duration when it's available and sets
@@ -86,11 +108,16 @@
              */
             seekbarFillHandler() {
                 // get the percentage of the audio player from current time
-                const percentage =
-                    this.$refs.podcastAudio.currentTime /
-                    this.$refs.podcastAudio.duration;
+                const percentage = this.getCurrentPercentage(this.$refs.podcastAudio.currentTime);
 
                 this.$refs.seekbarFill.style.transform = `translateX(${-100 + percentage * 100}%)`
+            },
+            /**
+             * return the percentage of currentTime
+             */
+            getCurrentPercentage(time) {
+                return time /
+                    this.$refs.podcastAudio.duration;
             },
             /**
              * When the seekbar is clicked, get the position of the click,
@@ -108,6 +135,13 @@
                 this.$refs.podcastAudio.currentTime = seekToTimeInSeconds;
 
                 this.seekbarFillHandler();
+            },
+            /**
+             * When a marker is clicked, emit a jumped event with the time
+             *
+             */
+            markerClickHandler(marker) {
+                this.$root.$emit('jumped', {seconds: marker.seconds})
             },
             /**
              * duration to time utillity
@@ -130,11 +164,13 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        width: 95%;
+        width: 80%;
 
         &__time {
+            align-items: baseline;
             display: flex;
             justify-content: space-between;
+            margin-bottom: 1rem;
             width: 100%;
         }
 
@@ -149,7 +185,6 @@
                 margin-left: 1rem;
             }
         }
-
         &__timebar {
             flex: 1 1 100%;
         }
@@ -182,6 +217,23 @@
             display: block;
             height: 44px;
             width: 44px;
+        }
+
+        &__markers {
+            height: 24px;
+            left: 0;
+            position: relative;
+            text-align: left;
+            top:0;
+            width: 100%;
+
+            svg {
+                transform: translateX(-50%);
+            }
+        }
+
+        &__mark {
+            position: absolute;
         }
 
     }

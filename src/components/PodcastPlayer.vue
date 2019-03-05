@@ -17,6 +17,7 @@
     <!-- Controls Component -->
     <controls
       ref="podcast"
+      :bookmarks="bookmarks"
       :audio="currentPodcast.audioSource"
     />
 
@@ -37,6 +38,9 @@ export default {
       currentPodcast: podcasts[0],
     };
   },
+  props: [
+    'bookmarks',
+  ],
   components: {
     Controls
   }

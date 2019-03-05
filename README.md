@@ -123,3 +123,14 @@ Sample Bookmark data
     seconds: 382.662643,
 }
 ```
+
+# Chapter 4 - Voice Notes
+To make voice notes, we need to use a different type of speech-to-text that is generally called “Dictation”. Where we were previously just passively listening for certain commands, we’ll now use a command to start the Dictation Object in the SpeechRecognition API, through Artyom.
+
+Todo’s
+- Create a new Note component
+- Add storage of Notes data object is OK, again. (Bonus, LocalStorage)
+- Create a new note on a “new note” command.
+- Handle the note dictation
+	- use convenient wildcard functions in Artyom
+	- output the text to the note component
