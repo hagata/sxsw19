@@ -34,7 +34,7 @@ export default {
   name: 'PodcastPlayer',
   data() {
     return {
-      // Return a podcast as currentPodcast
+      currentPodcast: podcasts[0],
     };
   },
   components: {
