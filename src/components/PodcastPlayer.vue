@@ -2,7 +2,6 @@
 <template>
   <div class="podcast-player">
     <!-- outputs the podcast data to the page -->
-    <pre>{{currentPodcast}}</pre>
     <!-- Build out the player UI -->
     <!-- Podcast cover art -->
 
