@@ -11,17 +11,6 @@
 <script>
     export default {
         name: 'Controls',
-        data() {
-            return {
-                currentTime: '0:00',
-                duration: ''
-            }
-        },
-        props: [
-            'audio'
-        ],
-        methods:{}
-
     }
 </script>
 
