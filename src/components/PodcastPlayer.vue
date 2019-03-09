@@ -8,12 +8,12 @@
     <img :src="currentPodcast.artwork" :alt="`artwork for ${currentPodcast.podcast}`">
 
     <!-- Podcast Title & Episode name -->
-    <span class="podcast-player__title">
-      {{currentPodcast.podcast}}
-    </span>
     <h1 class="podcast-player__episode">
       {{currentPodcast.episodeTitle}}
     </h1>
+    <span class="podcast-player__title">
+      {{currentPodcast.podcast}}
+    </span>
     <!-- Controls Component -->
     <controls
       :audio="currentPodcast.audioSource"
@@ -48,6 +48,19 @@ export default {
   align-items: center;
   display: flex;
   flex-direction: column;
+
+  &__episode {
+    font-size: 1.6rem;
+    line-height: 1.15;
+    margin-bottom: .5rem;
+  }
+
+  &__title {
+    display: block;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    color: var(--color-gray);
+  }
 }
 
 </style>

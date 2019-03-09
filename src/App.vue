@@ -26,6 +26,9 @@ var(--dark-blue);
 */
 :root {
   --dark-blue: #2c3e50;
+  --color-red: #F34624;
+  --color-light-gray: #e0e0e0;
+  --color-gray: #757575;
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

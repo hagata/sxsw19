@@ -130,7 +130,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        width: 80%;
+        width: 95%;
 
         &__time {
             display: flex;
@@ -139,6 +139,7 @@
         }
 
         &__timestamp {
+            color: var(--color-gray);
             flex:0 0 44px;
 
             &:first-of-type {
@@ -154,15 +155,15 @@
         }
 
         &__seekbar {
-            background: #aaaaaa;
+            background: var(--color-light-gray);
             border-radius: 5px;
-            height: 16px;
+            height: 8px;
             overflow: hidden;
             position: relative;
         }
 
         &__seekbar-fill {
-            background: var(--dark-blue);
+            background: var(--color-red);
             height: 100%;
             left: 0;
             position: absolute;
@@ -174,7 +175,7 @@
 
 
         &__toggle-button {
-            background: var(--dark-blue);
+            background: var(--color-red);
             border: none;
             border-radius: 50%;
             color: white;
