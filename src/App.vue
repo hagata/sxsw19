@@ -137,16 +137,23 @@ var(--dark-blue);
 :root {
   --dark-blue: #2c3e50;
   --color-red: #F34624;
-  --color-light-gray: #e0e0e0;
+  --color-light-gray: #F6F6F6;
+  --color-medium-gray: #D8D8D8;
   --color-gray: #757575;
 }
+html, body {
+  margin: 0;
+}
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  background: var(--color-light-gray);
   color: var(--dark-blue);
-  margin-top: 60px;
+  padding: 60px .675rem;
+  margin: 0;
 }
 
 .bookmarks {

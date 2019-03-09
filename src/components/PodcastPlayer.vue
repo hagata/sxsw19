@@ -22,6 +22,7 @@
     />
 
     <p class="podcast-player__description">
+    <span class="podcast-player__description-eybrow">Description</span>
       {{currentPodcast.description}}
     </p>
   </div>
@@ -64,6 +65,17 @@ export default {
     margin-bottom: 1rem;
     font-weight: bold;
     color: var(--color-gray);
+  }
+
+  &__description {
+    text-align: left;
+  }
+
+  &__description-eybrow {
+    display: block;
+    font-weight: bold;
+    color: var(--color-gray);
+    margin-bottom: .675rem;
   }
 }
 

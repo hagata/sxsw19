@@ -38,8 +38,12 @@
         @click="playHandler($event)"
         >
         <!-- toggle button state from play/pause -->
-        <span v-if="playing">PAUSE</span>
-        <span v-if="!playing">PLAY</span>
+        <span v-if="playing">
+            <svg width="12" height="14" xmlns="http://www.w3.org/2000/svg"><path d="M0 14h4V0H0v14zM8 0v14h4V0H8z" fill="#000" fill-rule="nonzero"/></svg>
+        </span>
+        <span v-if="!playing">
+            <svg width="11" height="14" xmlns="http://www.w3.org/2000/svg"><path d="M0 0v14l11-7z" fill="#000" fill-rule="nonzero"/></svg>
+        </span>
         </button>
     </div>
 
@@ -190,7 +194,7 @@
         }
 
         &__seekbar {
-            background: var(--color-light-gray);
+            background: var(--color-medium-gray);
             border-radius: 5px;
             height: 8px;
             overflow: hidden;
@@ -217,6 +221,10 @@
             display: block;
             height: 44px;
             width: 44px;
+
+            svg * {
+                fill: white;
+            }
         }
 
         &__markers {
