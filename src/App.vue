@@ -14,6 +14,14 @@
 
     </div>
     <!-- Notes -->
+    <div class="notes">
+      <h2 class="notes__header">Notes</h2>
+      <note
+      v-for="item in notes"
+      :key="item.id"
+      :metadata="item"
+      />
+    </div>
   </div>
 </template>
 
@@ -21,6 +29,7 @@
 import PodcastPlayer from './components/PodcastPlayer.vue'
 import VoiceInterface from './Utils/VoiceInterface.js'
 import Bookmark from './components/Bookmark.vue'
+import Note from './components/Note.vue'
 
 export default {
   name: 'podversation',
@@ -33,11 +42,20 @@ export default {
           seconds: 382.662643,
         }
       ],
+      notes: [
+        {
+          id: 0,
+          timestring: '15:01',
+          seconds: 901,
+          note: 'lorem ipsum...',
+        }
+      ]
     }
   },
   components: {
     PodcastPlayer,
     Bookmark,
+    Note,
   },
   mounted() {
     this.voice = new VoiceInterface() // artyom
@@ -55,8 +73,8 @@ export default {
       this.voice.listener.on(['add a bookmark', 'save this spot', 'bookmark']).then(() => {
         this.newBookmarkHandler();
       })
-      this.voice.listener.on(['voice note', 'new memo', 'note', 'memo']).then(() => {
-        this.newNoteHandler();
+      this.voice.listener.on(['voice note *', 'new memo *', 'note *', 'memo *'], true).then((i, text) => {
+        this.newNoteHandler(text);
       })
     },
     /**
@@ -91,8 +109,19 @@ export default {
       const seconds = bookmark.seconds;
       this.$refs.player.$refs.podcast.$refs.podcastAudio.currentTime = seconds
     },
-    newNoteHandler(){
-      console.log('New note')
+    newNoteHandler(text) {
+      this.recording = !this.recording
+      const seconds = this.$refs.player.$refs.podcast.getCurrentTime().seconds
+      const timestring = this.$refs.player.$refs.podcast.getCurrentTime().hhmmss
+
+      const note = {
+        id: `${this.notes.length + 1}`,
+        timestring,
+        seconds,
+        note: text
+      }
+      console.log('new note', note)
+      this.notes.push(note)
     }
   }
 }
@@ -121,6 +150,10 @@ var(--dark-blue);
 }
 
 .bookmarks {
+  text-align: left;
+}
+
+.notes {
   text-align: left;
 }
 </style>

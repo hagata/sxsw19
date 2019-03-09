@@ -134,3 +134,20 @@ Todo’s
 - Handle the note dictation
 	- use convenient wildcard functions in Artyom
 	- output the text to the note component
+
+# Ch 5. How much time do you have left?
+It’s at this point in the prototyping process that our core features are developed enough to share and test. 
+
+We have enough to start gathering feedback for the next steps and we can start to focus a bit more on things like design, adding a database,  user accounts, handling more than one podcast, etc.
+
+All those secondary features make the prototype more realistic.
+
+## Optional Todo’s
+- make it pretty (usually number 1)
+- make the data persist (local storage, Firebase, etc.)
+- Add features
+	- Read notes in voice synthesis (ask by ID)
+	- Pause the podcast while it’s playing *requires to use a different method for processing dictation. There is no _hook_ or _event_ when Artyom is listening for _smart_ commands.
+		- Refactor using `Artyom.newDictation`
+	- Edit/delete Notes and or Bookmarks
+	- Add a “sentence case” library to make the text pretty.
